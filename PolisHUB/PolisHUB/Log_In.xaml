@@ -12,12 +12,10 @@
             <RowDefinition Height = "*"/>
         </Grid.RowDefinitions>
 
-        <CommandBar DefaultLabelPosition = "Right">
-        <CommandBar.PrimaryCommands>
-            <AppBarButton x:Name = "UserAppBar" Icon = "Contact" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <AppBarButton Icon = "Setting"/>
-        </CommandBar.PrimaryCommands>
-
+        <CommandBar Background = "#0063B1">
+            <CommandBar.Content>
+                <TextBlock Text = "PolisHub" Margin = "16,8" FontSize = "24"/>
+            </CommandBar.Content>
         </CommandBar>
 
         <StackPanel Grid.Row = "1" Orientation = "Vertical" HorizontalAlignment = "Center" VerticalAlignment = "Center">

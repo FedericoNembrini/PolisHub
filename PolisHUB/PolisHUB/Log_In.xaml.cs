@@ -17,13 +17,18 @@ namespace PolisHUB
             client.BaseAddress = new Uri("http://polis.inno-school.org");
         }
 
-        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginRequestAsync();
+        }
+
+        private async void LoginRequestAsync()
         {
             try
             {
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "/polis/php/api/login.php");
 
-                string data = string.Format("{0}\"user\":\"{1}\",\"pass\":\"{2}\"{3}","{", UsernameBox.Text, PasswordBox.Password, "}");
+                string data = string.Format("{0}\"user\":\"{1}\",\"pass\":\"{2}\"{3}", "{", UsernameBox.Text, PasswordBox.Password, "}");
 
                 var form = new List<KeyValuePair<string, string>>
                 {
@@ -49,7 +54,7 @@ namespace PolisHUB
                     this.Frame.Navigate(typeof(HomePage), obj);
                 }
             }
-            catch(Exception mex)
+            catch (Exception mex)
             {
                 Debug.WriteLine(mex.Message);
             }
