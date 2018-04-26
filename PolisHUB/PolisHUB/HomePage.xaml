@@ -7,16 +7,22 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation = "Vertical">
+    <StackPanel Orientation = "Vertical" Background = "#4C4A48">
+        
         <CommandBar DefaultLabelPosition = "Right">
             <CommandBar.Content>
                 <TextBlock Text = "PolisHub" Margin = "16,8" FontSize="24"/>
             </CommandBar.Content>
+            
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name = "UserAppBar" Icon = "Contact"/>
                 <AppBarButton Icon = "Setting"/>
             </CommandBar.PrimaryCommands>
             
         </CommandBar>
+
+        <StackPanel Orientation = "Horizontal">
+            
+        </StackPanel>
     </StackPanel>
 </Page>
