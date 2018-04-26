@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="PolisHUB.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background = "#4C4A48">
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "auto"/>
+            <RowDefinition Height = "*"/>
+        </Grid.RowDefinitions>
+
+        <CommandBar DefaultLabelPosition = "Right">
+        <CommandBar.PrimaryCommands>
+            <AppBarButton x:Name = "UserAppBar" Icon = "Contact" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <AppBarButton Icon = "Setting"/>
+        </CommandBar.PrimaryCommands>
+
+        </CommandBar>
+
+        <StackPanel Grid.Row = "1" Orientation = "Vertical" HorizontalAlignment = "Center" VerticalAlignment = "Center">
+            <TextBlock Text = "Login" Margin = "24" FontSize = "24" FontWeight = "SemiBold" HorizontalAlignment = "Center" />
+
+            <StackPanel Orientation = "Horizontal">
+                <TextBlock Text = "Username: " VerticalAlignment = "Center" Margin = "8" Width="80" />
+                <TextBox Name = "UsernameBox" PlaceholderText = "Username" Margin = "8" VerticalAlignment = "Center" Width = "150"/>
+            </StackPanel>
+
+            <StackPanel Orientation = "Horizontal">
+                <TextBlock Text = "Password: " VerticalAlignment = "Center" Margin = "8"  Width = "80"/>
+                <PasswordBox Name = "PasswordBox" PlaceholderText = "Password" Margin = "8" Width = "150"/>
+            </StackPanel>
+
+            <Button Content = "Login" Margin = "8" HorizontalAlignment = "Center" Width = "200" Click = "LoginButton_Click"/>
+            
+            <StackPanel Grid.Row="1">
+                <TextBlock Name = "Message" HorizontalAlignment = "Center"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
