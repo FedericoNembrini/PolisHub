@@ -20,8 +20,15 @@
             
         </CommandBar>
 
-        <Grid x:Name = "ThingVisualization_Grid">
-            
-        </Grid>
+        <GridView x:Name = "ThingVisualization_Grid">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin = "20">
+                        <TextBlock Text = "{Binding Name}"/>
+                        <TextBlock Text = "{Binding Tag}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
     </StackPanel>
 </Page>
