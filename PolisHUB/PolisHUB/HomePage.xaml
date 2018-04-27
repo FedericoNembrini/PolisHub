@@ -2,14 +2,13 @@
     x:Class="PolisHUB.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:PolisHUB"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <StackPanel Orientation = "Vertical" Background = "#4C4A48">
-        
-        <CommandBar DefaultLabelPosition = "Right">
+
+        <CommandBar Background = "#0063B1" DefaultLabelPosition = "Right">
             <CommandBar.Content>
                 <TextBlock Text = "PolisHub" Margin = "16,8" FontSize="24"/>
             </CommandBar.Content>
@@ -21,8 +20,8 @@
             
         </CommandBar>
 
-        <StackPanel Orientation = "Horizontal">
+        <Grid x:Name = "ThingVisualization_Grid">
             
-        </StackPanel>
+        </Grid>
     </StackPanel>
 </Page>

@@ -7,7 +7,7 @@ namespace PolisHUB
 {
     public sealed partial class HomePage : Page
     {
-        HttpClient client;
+        HTTPHanderl handler;
         public HomePage()
         {
             this.InitializeComponent();
@@ -16,8 +16,10 @@ namespace PolisHUB
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Object[] obj = e.Parameter as Object[];
-            client = obj[0] as HttpClient;
+            handler = obj[0] as HTTPHanderl;
             UserAppBar.Label = obj[1] as String;
+
+            handler.HTTPThingRequest_Async();
         }
     }
 }

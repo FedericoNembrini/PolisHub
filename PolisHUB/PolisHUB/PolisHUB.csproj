@@ -98,6 +98,7 @@
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HTTPHanderl.cs" />
     <Compile Include="Log_In.xaml.cs">
       <DependentUpon>Log_In.xaml</DependentUpon>
     </Compile>
