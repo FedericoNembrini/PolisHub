@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    
     <StackPanel Orientation = "Vertical" Background = "#4C4A48">
 
         <CommandBar Background = "#0063B1" DefaultLabelPosition = "Right">
@@ -19,16 +19,31 @@
             </CommandBar.PrimaryCommands>
             
         </CommandBar>
+        
+        <StackPanel>
 
-        <GridView x:Name = "ThingVisualization_Grid">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin = "20">
-                        <TextBlock Text = "{Binding Name}"/>
-                        <TextBlock Text = "{Binding Tag}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+            <GridView x:Name = "ThingVisualization_Grid" HorizontalAlignment = "Center" VerticalAlignment = "Center">
+                
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Yellow" CornerRadius="12">
+
+                            <StackPanel Margin = "80">
+                                <TextBlock Text = "{Binding Name}"/>
+                                <TextBlock Text = "{Binding Tag}"/>
+                            </StackPanel>
+
+                        </Border>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns = "2"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+
+            </GridView>
+        </StackPanel>
     </StackPanel>
 </Page>
