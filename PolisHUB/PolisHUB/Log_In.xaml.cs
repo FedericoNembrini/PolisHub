@@ -21,9 +21,10 @@ namespace PolisHUB
 
         private async void LoginRequestAsync()
         {
-            JObject status = await handler.HTTPLoginRequest_Async(UsernameBox.Text, PasswordBox.Password);
+			JObject status = await handler.HTTPLoginRequest_Async("admin", "password");
+							//await handler.HTTPLoginRequest_Async(UsernameBox.Text, PasswordBox.Password);
 
-            if(status == null)
+			if (status == null)
             {
                 Message.Text = "Site Offline or No Internet Connection";
             }
