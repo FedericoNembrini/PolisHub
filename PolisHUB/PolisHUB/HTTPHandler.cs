@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace PolisHUB
 {
-    class HTTPHanderl
+    class HTTPHandler
     {
         HttpClient client = new HttpClient();
         const string LOGIN = "/polis/php/api/login.php";
 
-        public HTTPHanderl()
+        public HTTPHandler()
         {
             client.BaseAddress = new Uri("http://polis.inno-school.org");
         }
@@ -71,6 +71,35 @@ namespace PolisHUB
             }
             return null;
         }
+
+		public async Task<JArray> HTTPThingValueRequest_Async(string thing)
+		{
+			try
+			{
+				HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "/polis/php/api/getMetricLogs.php");
+
+				string data = string.Format("{0}\"thingTag\":\"{1}\"{2}", "{", thing, "}");
+
+				var form = new List<KeyValuePair<string, string>>
+				{
+					new KeyValuePair<string, string>("data", data)
+				};
+
+				request.Content = new FormUrlEncodedContent(form);
+				var response = await client.SendAsync(request);
+				var stringResult = await response.Content.ReadAsStringAsync();
+
+				JArray jsonResults = JArray.Parse(stringResult);
+
+				return jsonResults;
+			}
+			catch (Exception mex)
+			{
+				Debug.WriteLine(mex.Message);
+			}
+
+			return null;
+		}
         
         #endregion
     }

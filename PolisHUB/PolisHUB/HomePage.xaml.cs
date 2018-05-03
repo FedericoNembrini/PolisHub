@@ -9,7 +9,7 @@ namespace PolisHUB
 {
     public sealed partial class HomePage : Page
     {
-        HTTPHanderl handler;
+        HTTPHandler handler;
         List<Thing> things = new List<Thing>();
 
         public HomePage()
@@ -20,7 +20,7 @@ namespace PolisHUB
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Object[] obj = e.Parameter as Object[];
-            handler = obj[0] as HTTPHanderl;
+            handler = obj[0] as HTTPHandler;
             UserAppBar.Label = obj[1] as String;
 
             LoadThingList_Async();
@@ -32,7 +32,7 @@ namespace PolisHUB
 
             foreach (JObject thing in jsonThingList)
             {
-                things.Add(new Thing(thing));
+                things.Add(new Thing(thing, handler));
             }
 
             ThingVisualization_Grid.ItemsSource = things;

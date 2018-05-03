@@ -7,7 +7,7 @@ namespace PolisHUB
 {
     public sealed partial class MainPage : Page
     {
-        HTTPHanderl handler = new HTTPHanderl();
+        HTTPHandler handler = new HTTPHandler();
 
         public MainPage()
         {
