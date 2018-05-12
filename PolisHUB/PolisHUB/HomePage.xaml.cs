@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -15,6 +16,7 @@ namespace PolisHUB
         public HomePage()
         {
             this.InitializeComponent();
+			ThingVisualization_Grid.DataContext = this;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -35,7 +37,9 @@ namespace PolisHUB
                 things.Add(new Thing(thing, handler));
             }
 
-            ThingVisualization_Grid.ItemsSource = things;
-        }
+			ThingVisualization_Grid.ItemsSource = things;
+
+			//await things[0].GetLastValue_Async();
+		}
     }
 }

@@ -72,6 +72,33 @@ namespace PolisHUB
             return null;
         }
 
+		public async Task<JArray> HTTPThingLastValueRequest_Async(string thing)
+		{
+			try
+			{
+				HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "/polis/php/api/getLastValue.php?data={\"thingTag\":\"" + thing + "\"}");
+
+				var response = await client.SendAsync(request);
+				var stringResults = await response.Content.ReadAsStringAsync();
+
+				try
+				{
+					JArray jsonResults = JArray.Parse(stringResults);
+					return jsonResults;
+				}
+				catch (Exception mex)
+				{
+					Debug.WriteLine(mex.Message);
+				}
+			}
+			catch(Exception mex)
+			{
+				Debug.WriteLine(mex.Message);
+			}
+
+			return null;
+		}
+
 		public async Task<JArray> HTTPThingValueRequest_Async(string thing)
 		{
 			try
@@ -89,9 +116,17 @@ namespace PolisHUB
 				var response = await client.SendAsync(request);
 				var stringResult = await response.Content.ReadAsStringAsync();
 
-				JArray jsonResults = JArray.Parse(stringResult);
+				try
+				{
+					JArray jsonResults = JArray.Parse(stringResult);
+					return jsonResults;
+				}
+				catch (Exception mex)
+				{
+					Debug.WriteLine(mex.Message);
+				}
 
-				return jsonResults;
+				return null;
 			}
 			catch (Exception mex)
 			{
