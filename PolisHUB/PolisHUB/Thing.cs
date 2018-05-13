@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
+
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace PolisHUB
 {
 	class Thing : INotifyPropertyChanged
 	{
-
 		public event PropertyChangedEventHandler PropertyChanged = delegate { };
 		private HTTPHandler handler;
 
@@ -15,39 +16,17 @@ namespace PolisHUB
 		public string FamilyTag { get; set; }
 		public int UserType { get; set; }
 		public int AccessLevel { get; set; }
-		public string[] Unit { get; set; }
 
-		private string[] lastValue;
-
-		public string[] LastValue
-		{
-			get
-			{
-				return lastValue;
-			}
-
-			set
-			{
-				lastValue = value;
-				OnPropertyChanged("LastValue");
-			}
-		}
-
-		public void OnPropertyChanged(string propertyName)
-		{
-			// Raise the PropertyChanged event, passing the name of the property whose value has changed.
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
+		public ObservableCollection<string> Unit { get; set; } = new ObservableCollection<string>();
+		public ObservableCollection<string> LastValue { get; set; } = new ObservableCollection<string>();
 
 		public Thing(JObject jsonThing, HTTPHandler handler)
 		{
-			Unit = new string[2];
-
 			this.handler = handler;
 			InitializeThing(jsonThing);
 		}
 
-		private async void InitializeThing(JObject jsonThing)
+		private void InitializeThing(JObject jsonThing)
 		{
 			Tag = jsonThing["tag"].ToString();
 			Name = jsonThing["name"].ToString();
@@ -55,25 +34,37 @@ namespace PolisHUB
 			UserType = (int)(jsonThing["user_type"]);
 			AccessLevel = (int)(jsonThing["access_level"]);
 
-			if(Tag == "aaaaaaaaaaaa")
-				await GetLastValue_Async();
+			GetLastValue_Async();
 			//GetValue_Async();
 		}
 
 		public async Task<int> GetLastValue_Async()
 		{
-			var jsonArrayResult = await handler.HTTPThingLastValueRequest_Async(Tag);
+			JArray jsonArrayResult;
 
 			int i = 0;
 
-			foreach (JObject jsonObject in jsonArrayResult)
+			while (true)
 			{
-				LastValue[i] = jsonObject["value"].ToString();
-				Unit[i] = jsonObject["unit"].ToString();
-				i++;
-			}
+				jsonArrayResult = await handler.HTTPThingLastValueRequest_Async(Tag);
 
-			return 1;
+				if (jsonArrayResult != null)
+				{
+					while (Unit.Count < jsonArrayResult.Count)
+					{
+						Unit.Add("");
+						LastValue.Add("");
+					}
+
+					foreach (JObject jsonObject in jsonArrayResult)
+					{
+						LastValue[i] = jsonObject["value"].ToString();
+						Unit[i] = jsonObject["unit"].ToString();
+						i++;
+					}
+				}
+				await Task.Delay(60000);
+			}
 		}
 
 		private async void GetValue_Async()

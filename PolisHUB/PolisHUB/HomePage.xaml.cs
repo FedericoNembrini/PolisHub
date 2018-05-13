@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -38,8 +37,6 @@ namespace PolisHUB
             }
 
 			ThingVisualization_Grid.ItemsSource = things;
-
-			//await things[0].GetLastValue_Async();
 		}
     }
 }

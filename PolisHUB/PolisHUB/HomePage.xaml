@@ -13,17 +13,23 @@
             <StackPanel BorderThickness = "6" BorderBrush = "#0063B1"
                         Width = "500" 
                         Padding = "80, 40, 80, 40"
-                        Orientation = "Vertical">
+                        Orientation = "Vertical"
+                        VerticalAlignment = "Center">
 
                 <TextBlock Text = "{Binding Name}" HorizontalAlignment = "Center" FontSize="20"/>
                 <TextBlock Text = "{Binding Tag}" HorizontalAlignment = "Center"/>
 
                 <StackPanel Orientation = "Horizontal" HorizontalAlignment = "Center">
+
+                    <StackPanel Orientation = "Horizontal" HorizontalAlignment = "Center"  Margin = "6">
+                        <TextBlock Text = "{Binding LastValue[0]}" FontSize = "14"/>
+                        <TextBlock Text = "{Binding Unit[0]}" FontSize = "12"/>
+                    </StackPanel>
                     
-                    <TextBlock Text = "{Binding LastValue[0]}" FontSize = "14"/>
-                    <TextBlock Text = "{Binding Unit[0]}" FontSize = "12"/>
-                    <TextBlock Text = "{Binding LastValue[1]}" FontSize = "14"/>
-                    <TextBlock Text = "{Binding Unit[1]}" FontSize = "12"/>
+                    <StackPanel Orientation = "Horizontal" HorizontalAlignment = "Center" Margin = "6">
+                        <TextBlock Text = "{Binding LastValue[1]}" FontSize = "14"/>
+                        <TextBlock Text = "{Binding Unit[1]}" FontSize = "12"/>
+                    </StackPanel>
                     
                 </StackPanel>
                 
@@ -35,7 +41,9 @@
         </Style>
 
         <ItemsPanelTemplate x:Key = "ItemsPanelTemplateThingHomePage">
+            
             <ItemsWrapGrid MaximumRowsOrColumns = "2" Orientation = "Horizontal" HorizontalAlignment = "Center"/>
+            
         </ItemsPanelTemplate>
 
     </Page.Resources>
@@ -47,6 +55,7 @@
         <!--#region CommandBar-->
         
         <CommandBar Background = "#0063B1" DefaultLabelPosition = "Right">
+            
             <CommandBar.Content>
                 
                 <TextBlock Text = "PolisHub" Margin = "16, 8" FontSize="24"/>
@@ -59,6 +68,7 @@
                 <AppBarButton Icon = "Setting"/>
 
             </CommandBar.PrimaryCommands>
+            
         </CommandBar>
         
         <!--#endregion-->
