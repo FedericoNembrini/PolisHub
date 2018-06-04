@@ -10,7 +10,7 @@
     
     <Page.Resources>
         <DataTemplate x:Key="DataTemplateThingHomePage">
-            <StackPanel BorderThickness = "6" BorderBrush = "#0063B1"
+            <StackPanel BorderThickness = "6" BorderBrush = "#E4B319"
                         Width = "500" 
                         Padding = "80, 40, 80, 40"
                         Orientation = "Vertical"
@@ -50,16 +50,16 @@
     
     <!--#endregion-->
     
-    <StackPanel Orientation = "Vertical" Background = "#4C4A48">
+    <StackPanel Orientation = "Vertical" Background = "#222222">
        
         <!--#region CommandBar-->
         
-        <CommandBar Background = "#0063B1" DefaultLabelPosition = "Right">
+        <CommandBar Background = "#E4B319" DefaultLabelPosition = "Right">
             
             <CommandBar.Content>
-                
-                <TextBlock Text = "PolisHub" Margin = "16, 8" FontSize="24"/>
-            
+
+                <TextBlock Text = "PolisHub" FontWeight="Bold" Foreground = "Black" Margin = "16,8" FontSize = "24"/>
+
             </CommandBar.Content>
 
             <CommandBar.PrimaryCommands>
@@ -82,7 +82,9 @@
                       VerticalAlignment = "Center"
                       ItemTemplate = "{StaticResource DataTemplateThingHomePage}"
                       ItemContainerStyle = "{StaticResource ItemContainerStyleThingHomePage}"
-                      ItemsPanel="{StaticResource ItemsPanelTemplateThingHomePage}"/>
+                      ItemsPanel="{StaticResource ItemsPanelTemplateThingHomePage}"
+                      ItemClick="ThingVisualization_Grid_ThingClick"
+                      IsItemClickEnabled="True"/>
         </StackPanel>
         
         <!--#endregion-->

@@ -16,6 +16,8 @@ namespace PolisHUB
         public HTTPHandler()
         {
             client.BaseAddress = new Uri("http://polis.inno-school.org");
+			client.DefaultRequestHeaders.Accept.Clear();
+			client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         #region Login
@@ -99,11 +101,11 @@ namespace PolisHUB
 			return null;
 		}
 
-		public async Task<JArray> HTTPThingValueRequest_Async(string thing)
+		public async Task<JObject> HTTPThingValueRequest_Async(string thing)
 		{
 			try
 			{
-				HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "/polis/php/api/getMetricLogs.php");
+				HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "/polis/php/api/getPolisHubLog.php");
 
 				string data = string.Format("{0}\"thingTag\":\"{1}\"{2}", "{", thing, "}");
 
@@ -114,19 +116,10 @@ namespace PolisHUB
 
 				request.Content = new FormUrlEncodedContent(form);
 				var response = await client.SendAsync(request);
+
 				var stringResult = await response.Content.ReadAsStringAsync();
 
-				try
-				{
-					JArray jsonResults = JArray.Parse(stringResult);
-					return jsonResults;
-				}
-				catch (Exception mex)
-				{
-					Debug.WriteLine(mex.Message);
-				}
-
-				return null;
+				return JObject.Parse(stringResult);
 			}
 			catch (Exception mex)
 			{

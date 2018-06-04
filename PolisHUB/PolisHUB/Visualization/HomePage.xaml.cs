@@ -38,5 +38,11 @@ namespace PolisHUB
 
 			ThingVisualization_Grid.ItemsSource = things;
 		}
-    }
+
+		private void ThingVisualization_Grid_ThingClick(object sender, ItemClickEventArgs e)
+		{
+			Thing thing = ((e.ClickedItem) as Thing);
+			this.Frame.Navigate(typeof(ThingVisualization), thing);
+		}
+	}
 }

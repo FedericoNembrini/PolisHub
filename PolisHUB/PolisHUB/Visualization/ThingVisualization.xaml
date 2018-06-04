@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class = "PolisHUB.ThingVisualization"
+    xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable = "d">
+
+    <Page.Resources>
+        
+        <DataTemplate x:Key="DataTemplateThingListView">
+            
+            <StackPanel Orientation = "Vertical">
+                <StackPanel Orientation = "Horizontal">
+
+                    <TextBlock Text = "{Binding TimeStamp}" Margin = "4"/>
+                    <TextBlock Text = "{Binding Value}" Margin = "4"/>
+                    <TextBlock Text = "{Binding Unit}" Margin = "4"/>
+                    
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        
+    </Page.Resources>
+    
+    <StackPanel Orientation = "Vertical" Background = "#222222">
+
+        <!--#region CommandBar-->
+
+        <CommandBar Background = "#E4B319" DefaultLabelPosition = "Right">
+
+            <CommandBar.Content>
+
+                <TextBlock Text = "PolisHub" FontWeight="Bold" Foreground = "Black" Margin = "16,8" FontSize = "24"/>
+
+            </CommandBar.Content>
+
+            <CommandBar.PrimaryCommands>
+
+                <AppBarButton x:Name = "UserAppBar" Icon = "Contact"/>
+                <AppBarButton Icon = "Setting"/>
+
+            </CommandBar.PrimaryCommands>
+
+        </CommandBar>
+
+        <StackPanel Orientation = "Vertical"
+                    HorizontalAlignment = "Center">
+            <TextBlock Text = "" Name = "ThingName"/>
+        </StackPanel>
+        
+        <ListView x:Name = "ThingVisualization_List"
+                  HorizontalAlignment = "Center"
+                  ItemTemplate = "{StaticResource DataTemplateThingListView}">
+
+
+        </ListView>
+        
+    </StackPanel>
+</Page>

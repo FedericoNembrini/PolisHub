@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json.Linq;
 
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace PolisHUB
 {
@@ -19,6 +21,7 @@ namespace PolisHUB
 
 		public ObservableCollection<string> Unit { get; set; } = new ObservableCollection<string>();
 		public ObservableCollection<string> LastValue { get; set; } = new ObservableCollection<string>();
+		public List<ThingValue>[] listValue = new List<ThingValue>[2];
 
 		public Thing(JObject jsonThing, HTTPHandler handler)
 		{
@@ -35,7 +38,6 @@ namespace PolisHUB
 			AccessLevel = (int)(jsonThing["access_level"]);
 
 			GetLastValue_Async();
-			//GetValue_Async();
 		}
 
 		public async Task<int> GetLastValue_Async()
@@ -50,10 +52,13 @@ namespace PolisHUB
 
 				if (jsonArrayResult != null)
 				{
+					int x = 0;
 					while (Unit.Count < jsonArrayResult.Count)
 					{
 						Unit.Add("");
 						LastValue.Add("");
+						listValue[x] = new List<ThingValue>();
+						x++;
 					}
 
 					foreach (JObject jsonObject in jsonArrayResult)
@@ -67,17 +72,23 @@ namespace PolisHUB
 			}
 		}
 
-		private async void GetValue_Async()
+		public async Task<bool> GetValue_Async()
 		{
-			JArray jsonArrayResult = await handler.HTTPThingValueRequest_Async(Tag);
-
-			if (jsonArrayResult != null)
+			JObject jsonObjectResult = await handler.HTTPThingValueRequest_Async(Tag);
+			
+			if(jsonObjectResult != null)
 			{
-				foreach (JObject jsonObject in jsonArrayResult)
+				int i = 0;
+				foreach(JObject objectMetricValue in jsonObjectResult["metricList"])
 				{
-					Unit[0] = jsonObject["metric"].ToString();
+					foreach(JObject objectValue in objectMetricValue["list"])
+					{
+						listValue[i].Add(new ThingValue((float)objectValue["value"], (DateTime) objectValue["time_stamp"], objectMetricValue["unit"].ToString()));
+					}
+					i++;
 				}
 			}
+			return true;
 		}
 	}
 }

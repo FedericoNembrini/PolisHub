@@ -6,15 +6,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background = "#4C4A48">
+    <Grid Background = "#222222">
         <Grid.RowDefinitions>
             <RowDefinition Height = "auto"/>
             <RowDefinition Height = "*"/>
         </Grid.RowDefinitions>
 
-        <CommandBar Background = "#0063B1">
+        <CommandBar Background = "#E4B319">
             <CommandBar.Content>
-                <TextBlock Text = "PolisHub" Margin = "16,8" FontSize = "24"/>
+                <TextBlock Text = "PolisHub" FontWeight="Bold" Foreground = "Black" Margin = "16,8" FontSize = "24"/>
             </CommandBar.Content>
         </CommandBar>
 
@@ -34,8 +34,10 @@
             <Button Content = "Login" Margin = "8" HorizontalAlignment = "Center" Width = "200" Click = "LoginButton_Click"/>
             
             <StackPanel Grid.Row="1">
-                <TextBlock Name = "Message" HorizontalAlignment = "Center"/>
+                <TextBlock Name = "Message" HorizontalAlignment = "Center" Visibility="Collapsed"/>
             </StackPanel>
+
+            <ProgressRing x:Name = "LoadingProgressRing" Visibility = "Visible" IsEnabled = "True" Height = "40" Width = "40" Foreground = "Yellow"/>
         </StackPanel>
     </Grid>
 </Page>
