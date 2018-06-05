@@ -20,11 +20,14 @@ namespace PolisHUB
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Object[] obj = e.Parameter as Object[];
-            handler = obj[0] as HTTPHandler;
-            UserAppBar.Label = obj[1] as String;
+			if (handler == null)
+			{
+				Object[] obj = e.Parameter as Object[];
+				handler = obj[0] as HTTPHandler;
+				UserAppBar.Label = obj[1] as String;
 
-            LoadThingList_Async();
+				LoadThingList_Async();
+			}
         }
 
         private async void LoadThingList_Async()

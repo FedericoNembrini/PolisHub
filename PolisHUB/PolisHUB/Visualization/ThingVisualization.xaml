@@ -7,20 +7,18 @@
     mc:Ignorable = "d">
 
     <Page.Resources>
-        
         <DataTemplate x:Key="DataTemplateThingListView">
-            
+
             <StackPanel Orientation = "Vertical">
                 <StackPanel Orientation = "Horizontal">
 
-                    <TextBlock Text = "{Binding TimeStamp}" Margin = "4"/>
-                    <TextBlock Text = "{Binding Value}" Margin = "4"/>
-                    <TextBlock Text = "{Binding Unit}" Margin = "4"/>
-                    
+                    <TextBlock Text = "{Binding TimeStamp}" Margin = "6"/>
+                    <TextBlock Text = "{Binding Value}" Margin = "6,6,0,6"/>
+                    <TextBlock Text = "{Binding Unit}" Margin = "0,6,6,6" FontSize = "12" VerticalAlignment = "Bottom"/>
+
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
-        
     </Page.Resources>
     
     <StackPanel Orientation = "Vertical" Background = "#222222">
@@ -30,9 +28,10 @@
         <CommandBar Background = "#E4B319" DefaultLabelPosition = "Right">
 
             <CommandBar.Content>
-
-                <TextBlock Text = "PolisHub" FontWeight="Bold" Foreground = "Black" Margin = "16,8" FontSize = "24"/>
-
+                <StackPanel Orientation = "Horizontal">
+                    <AppBarButton x:Name = "BackButton" Click = "BackButton_Click" Icon = "Back" Foreground="Black"/>
+                    <TextBlock Text = "PolisHub" FontWeight="Bold" Foreground = "Black" Margin = "16,8" FontSize = "24"/>
+                </StackPanel>
             </CommandBar.Content>
 
             <CommandBar.PrimaryCommands>
@@ -43,10 +42,26 @@
             </CommandBar.PrimaryCommands>
 
         </CommandBar>
+        
+        <!--#endregion-->
 
-        <StackPanel Orientation = "Vertical"
-                    HorizontalAlignment = "Center">
-            <TextBlock Text = "" Name = "ThingName"/>
+        <StackPanel Orientation = "Vertical" HorizontalAlignment = "Center" VerticalAlignment = "Center" Margin  = "20">
+
+            <StackPanel x:Name = "ProgressRingPanel" Orientation = "Vertical" Margin = "6">
+                <ProgressRing x:Name = "ProgressRing_01" IsEnabled = "True" Height = "40" Width = "40" Foreground = "Yellow" Margin = "6"/>
+                <TextBlock x:Name = "TextBlock_Connection_Error"  Text = "Problemi di connessione" FontSize = "18" Visibility = "Collapsed" Margin = "10"/>
+            </StackPanel>
+            
+            <StackPanel x:Name = "ThingVisualizationSettings" Orientation = "Vertical" HorizontalAlignment="Center" VerticalAlignment = "Center" Visibility = "Collapsed">
+
+                <TextBlock Name = "ThingName" HorizontalAlignment = "Center" FontSize = "20"/>
+
+                <StackPanel Orientation = "Horizontal" HorizontalAlignment = "Center">
+                    <RadioButton x:Name = "radioButton1" Content = "{Binding UnitName[0]}" GroupName = "Unit" HorizontalAlignment = "Center" IsChecked = "False" Checked = "RadioButtonChecked_Click"/>
+                    <RadioButton x:Name = "radioButton2" Content = "{Binding UnitName[1]}" GroupName = "Unit" HorizontalAlignment = "Center" Visibility = "Collapsed" Checked = "RadioButtonChecked_Click"/>
+                </StackPanel>
+            
+            </StackPanel>
         </StackPanel>
         
         <ListView x:Name = "ThingVisualization_List"

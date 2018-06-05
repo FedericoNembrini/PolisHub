@@ -19,6 +19,7 @@ namespace PolisHUB
 		public int UserType { get; set; }
 		public int AccessLevel { get; set; }
 
+		public ObservableCollection<string> UnitName { get; set; } = new ObservableCollection<string>();
 		public ObservableCollection<string> Unit { get; set; } = new ObservableCollection<string>();
 		public ObservableCollection<string> LastValue { get; set; } = new ObservableCollection<string>();
 		public List<ThingValue>[] listValue = new List<ThingValue>[2];
@@ -55,8 +56,10 @@ namespace PolisHUB
 					int x = 0;
 					while (Unit.Count < jsonArrayResult.Count)
 					{
+						UnitName.Add("");
 						Unit.Add("");
 						LastValue.Add("");
+						
 						listValue[x] = new List<ThingValue>();
 						x++;
 					}
@@ -81,14 +84,16 @@ namespace PolisHUB
 				int i = 0;
 				foreach(JObject objectMetricValue in jsonObjectResult["metricList"])
 				{
+					UnitName[i] = objectMetricValue["metric"].ToString();
 					foreach(JObject objectValue in objectMetricValue["list"])
 					{
 						listValue[i].Add(new ThingValue((float)objectValue["value"], (DateTime) objectValue["time_stamp"], objectMetricValue["unit"].ToString()));
 					}
 					i++;
 				}
+				return true;
 			}
-			return true;
+			return false;
 		}
 	}
 }
