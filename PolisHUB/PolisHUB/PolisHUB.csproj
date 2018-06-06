@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Global\CommonElements.cs" />
     <Compile Include="Visualization\AccountSetttings.xaml.cs">
       <DependentUpon>AccountSetttings.xaml</DependentUpon>
     </Compile>
@@ -111,13 +112,19 @@
       <DependentUpon>ThingVisualization.xaml</DependentUpon>
     </Compile>
     <Compile Include="ThingManagement\ThingValue.cs" />
+    <Compile Include="Visualization\WiFiSettings.xaml.cs">
+      <DependentUpon>WiFiSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WiFiManagement\WiFiHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="PolisHUB_TemporaryKey.pfx" />
-    <None Include="test.runsettings" />
+    <None Include="test.runsettings">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
@@ -147,6 +154,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Visualization\ThingVisualization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Visualization\WiFiSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

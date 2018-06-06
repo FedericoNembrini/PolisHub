@@ -13,7 +13,7 @@
   <!-- MSTest adapter -->
   <MSStoreTest>
 		<!-- Timeout for the installation 300.000 milliseconds = 5 minutes -->
-    <AppxInstallTimeout> 300000 </AppxInstallTimeout>
+    <AppxInstallTimeout> 600000 </AppxInstallTimeout>
   </MSStoreTest> 
 
 </RunSettings>

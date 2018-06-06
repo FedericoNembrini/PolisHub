@@ -11,13 +11,22 @@
             <RowDefinition Height = "auto"/>
             <RowDefinition Height = "*"/>
         </Grid.RowDefinitions>
-
-        <CommandBar Background = "#E4B319">
+        
+        <!--#region CommandBar-->
+        <CommandBar Background = "#E4B319" DefaultLabelPosition = "Right">
             <CommandBar.Content>
                 <TextBlock Text = "PolisHub" FontWeight="Bold" Foreground = "Black" Margin = "16,8" FontSize = "24"/>
             </CommandBar.Content>
+
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Click = "WiFiConnection_Click">
+                    <FontIcon x:Name = "WiFiButton" FontFamily = "Segoe MDL2 Assets" Glyph = "&#xE701;"/>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
         </CommandBar>
 
+        <!--#endregion-->
+        
         <StackPanel Grid.Row = "1" Orientation = "Vertical" HorizontalAlignment = "Center" VerticalAlignment = "Center">
             <TextBlock Text = "Login" Margin = "24" FontSize = "24" FontWeight = "SemiBold" HorizontalAlignment = "Center" />
 
@@ -39,5 +48,6 @@
 
             <ProgressRing x:Name = "LoadingProgressRing" Visibility = "Visible" IsEnabled = "True" Height = "40" Width = "40" Foreground = "Yellow"/>
         </StackPanel>
+        
     </Grid>
 </Page>

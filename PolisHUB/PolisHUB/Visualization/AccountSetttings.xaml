@@ -14,8 +14,8 @@
 
             <CommandBar.Content>
                 <StackPanel Orientation = "Horizontal">
-                    <AppBarButton x:Name = "BackButton" Click = "BackButton_Click" Icon = "Back" Foreground="Black"/>
-                    <TextBlock Text = "PolisHub" FontWeight="Bold" Foreground = "Black" Margin = "16,8" FontSize = "24"/>
+                    <AppBarButton x:Name = "BackButton" Click = "BackButton_Click" Icon = "Back" Foreground = "Black"/>
+                    <TextBlock Text = "PolisHub" FontWeight = "Bold" Foreground = "Black" Margin = "16,8" FontSize = "24"/>
                 </StackPanel>
             </CommandBar.Content>
 
