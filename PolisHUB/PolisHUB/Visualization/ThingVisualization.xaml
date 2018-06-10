@@ -12,16 +12,21 @@
             <StackPanel Orientation = "Vertical">
                 <StackPanel Orientation = "Horizontal">
 
-                    <TextBlock Text = "{Binding TimeStamp}" Margin = "6"/>
-                    <TextBlock Text = "{Binding Value}" Margin = "6,6,0,6"/>
-                    <TextBlock Text = "{Binding Unit}" Margin = "0,6,6,6" FontSize = "12" VerticalAlignment = "Bottom"/>
+                    <TextBlock Text = "{Binding TimeStamp}" Margin = "12, 12, 24, 12"/>
+                    <TextBlock Text = "{Binding Value}" Margin = "12, 12, 0, 12"/>
+                    <TextBlock Text = "{Binding Unit}" Margin = "0, 12, 12, 12" FontSize = "12" VerticalAlignment = "Bottom"/>
 
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    
-    <StackPanel Orientation = "Vertical" Background = "#222222">
+
+    <Grid Background = "#222222">
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "Auto"/>
+            <RowDefinition Height = "Auto"/>
+            <RowDefinition Height = "*"/>
+        </Grid.RowDefinitions>
 
         <!--#region CommandBar-->
 
@@ -42,16 +47,17 @@
             </CommandBar.PrimaryCommands>
 
         </CommandBar>
-        
+
         <!--#endregion-->
 
-        <StackPanel Orientation = "Vertical" HorizontalAlignment = "Center" VerticalAlignment = "Center" Margin  = "20">
+
+        <StackPanel Grid.Row = "1" Orientation = "Vertical" HorizontalAlignment = "Center" VerticalAlignment = "Center" Margin  = "20">
 
             <StackPanel x:Name = "ProgressRingPanel" Orientation = "Vertical" Margin = "6">
                 <ProgressRing x:Name = "ProgressRing_01" IsEnabled = "True" Height = "40" Width = "40" Foreground = "Yellow" Margin = "6"/>
                 <TextBlock x:Name = "TextBlock_Connection_Error"  Text = "Problemi di connessione" FontSize = "18" Visibility = "Collapsed" Margin = "10"/>
             </StackPanel>
-            
+
             <StackPanel x:Name = "ThingVisualizationSettings" Orientation = "Vertical" HorizontalAlignment="Center" VerticalAlignment = "Center" Visibility = "Collapsed">
 
                 <TextBlock Name = "ThingName" HorizontalAlignment = "Center" FontSize = "20"/>
@@ -60,16 +66,16 @@
                     <RadioButton x:Name = "radioButton1" Content = "{Binding UnitName[0]}" GroupName = "Unit" HorizontalAlignment = "Center" IsChecked = "False" Checked = "RadioButtonChecked_Click"/>
                     <RadioButton x:Name = "radioButton2" Content = "{Binding UnitName[1]}" GroupName = "Unit" HorizontalAlignment = "Center" Visibility = "Collapsed" Checked = "RadioButtonChecked_Click"/>
                 </StackPanel>
-            
+
             </StackPanel>
         </StackPanel>
-        
+
         <ListView x:Name = "ThingVisualization_List"
+                  Grid.Row = "2"
                   HorizontalAlignment = "Center"
-                  ItemTemplate = "{StaticResource DataTemplateThingListView}">
-
-
+                  ItemTemplate = "{StaticResource DataTemplateThingListView}"
+                  ScrollViewer.VerticalScrollBarVisibility = "Hidden">
         </ListView>
-        
-    </StackPanel>
+   
+    </Grid>
 </Page>

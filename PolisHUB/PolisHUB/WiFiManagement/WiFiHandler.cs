@@ -6,44 +6,70 @@ using Windows.UI.Xaml.Media;
 
 using Windows.Devices.Enumeration;
 using Windows.Devices.WiFi;
+using System.Collections.Generic;
 
 namespace PolisHUB.WiFiManagement
 {
-    class WiFiHandler
-    {
-		private WiFiAdapter WiFi_Adapter;
+	class WiFiHandler
+	{
+		private WiFiAdapter WiFiAdapter;
+		private DeviceInformationCollection DeviceInformationResult;
+		private WiFiAccessStatus VerifyAccessStatus;
+		public string WiFiConnectedName;
 
-		public WiFiHandler()
+		public WiFiHandler() {}
+
+		public async Task WiFi_AdapterInitialization()
 		{
+			VerifyAccessStatus = await WiFiAdapter.RequestAccessAsync();
 
+			DeviceInformationResult = await DeviceInformation.FindAllAsync(WiFiAdapter.GetDeviceSelector());
+
+			WiFiAdapter = await WiFiAdapter.FromIdAsync(DeviceInformationResult[0].Id);
 		}
 
 		public async Task<SolidColorBrush> ScanAdapter()
 		{
-			DeviceInformationCollection result = await DeviceInformation.FindAllAsync(WiFiAdapter.GetDeviceSelector());
-
-			if (result.Count >= 1)
-			{
-				WiFi_Adapter = await WiFiAdapter.FromIdAsync(result[0].Id);
-				return await WiFiController();
-			}
+			if ((WiFiAccessStatus.Allowed == VerifyAccessStatus) && (DeviceInformationResult.Count >= 1))
+				return (await WiFiController());
 			else
-			{
-				return new SolidColorBrush(Colors.Black);
-			}
+				return (new SolidColorBrush(Colors.Black));
 		}
 
-		private async Task<SolidColorBrush> WiFiController()
+		public async Task<SolidColorBrush> WiFiController()
 		{
-			if (WiFi_Adapter.NetworkAdapter.GetConnectedProfileAsync() != null)
+			if (WiFiAdapter.NetworkAdapter.GetConnectedProfileAsync() != null)
 			{
-				var connectedProfile = await WiFi_Adapter.NetworkAdapter.GetConnectedProfileAsync();
-				return new SolidColorBrush(Colors.LightGreen);
+				var connectedProfile = await WiFiAdapter.NetworkAdapter.GetConnectedProfileAsync();
+
+				if (connectedProfile != null)
+				{
+					WiFiConnectedName = connectedProfile.ProfileName;
+					return (new SolidColorBrush(Colors.LightGreen));
+				}
+				else
+					return (new SolidColorBrush(Colors.DarkRed));
 			}
 			else
+				return (new SolidColorBrush(Colors.DarkRed));
+		}
+
+		public async Task<List<WiFiAvailableNetworkAdapter>> ScanNetworks()
+		{
+			List<WiFiAvailableNetworkAdapter> WiFiListNetworksAdapted = new List<WiFiAvailableNetworkAdapter>();
+
+			if (WiFiAdapter != null)
 			{
-				return new SolidColorBrush(Colors.DarkRed);
+				await WiFiAdapter.ScanAsync();
+
+				foreach (var availableNetwork in WiFiAdapter.NetworkReport.AvailableNetworks)
+				{
+					if(availableNetwork.Ssid != "")
+						WiFiListNetworksAdapted.Add(new WiFiAvailableNetworkAdapter(availableNetwork));
+				}
+				return (WiFiListNetworksAdapted);
 			}
+			return (null);
 		}
 	}
 }

@@ -60,12 +60,11 @@ namespace PolisHUB
 
 		private async void WiFiConnectionController()
 		{
-			SolidColorBrush ColorResult;
+			await WiFiController.WiFi_AdapterInitialization();
+			SolidColorBrush ColorResult = await WiFiController.ScanAdapter();
 
-			do
+			while (true)
 			{
-				ColorResult = await WiFiController.ScanAdapter();
-
 				if (ColorResult.Color.Equals(CommonElements.ColorWiFiMissing.Color))
 				{
 					WiFiButton.Glyph = CommonElements.WiFiWarning4;
@@ -77,14 +76,19 @@ namespace PolisHUB
 					WiFiButton.Foreground = ColorResult;
 				}
 				await Task.Delay(15000);
-			} while (true);
+
+				ColorResult = await WiFiController.WiFiController();
+			} 
 		}
 
 		private void WiFiConnection_Click(object sender, RoutedEventArgs e)
 		{
 			if (!(WiFiButton.Glyph.Equals(CommonElements.WiFiWarning4)))
 			{
-				this.Frame.Navigate(typeof(WiFiSettings));
+				Object obj = new Object();
+				obj = WiFiController;
+
+				this.Frame.Navigate(typeof(WiFiSettings), obj);
 			}
 		}
 	}

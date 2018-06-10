@@ -115,6 +115,7 @@
     <Compile Include="Visualization\WiFiSettings.xaml.cs">
       <DependentUpon>WiFiSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WiFiManagement\WiFiAvailableNetworkAdapter.cs" />
     <Compile Include="WiFiManagement\WiFiHandler.cs" />
   </ItemGroup>
   <ItemGroup>
