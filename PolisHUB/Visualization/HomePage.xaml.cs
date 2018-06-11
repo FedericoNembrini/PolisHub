@@ -86,5 +86,10 @@ namespace PolisHUB
 			Thing thing = ((e.ClickedItem) as Thing);
 			this.Frame.Navigate(typeof(ThingVisualization), thing);
 		}
+
+		private void ShutDown_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+		{
+			Application.Current.Exit();
+		}
 	}
 }

@@ -9,7 +9,7 @@
     <Page.Resources>
         <DataTemplate x:Name = "DataTemplateWiFiList">
 
-            <StackPanel Orientation = "Horizontal" Margin = "6">
+            <StackPanel Orientation = "Horizontal" Margin = "6" Tapped = "SSIDList_Tapped">
                 <TextBlock Text = "{Binding Ssid}" Width = "200" Margin = "6"/>
                 <FontIcon FontFamily = "Segoe MDL2 Assets" Glyph = "{Binding SignalBarsGlyph}" Margin = "6"/>
             </StackPanel>
@@ -30,8 +30,8 @@
 
             <CommandBar.Content>
                 <StackPanel Orientation = "Horizontal">
-                    <AppBarButton x:Name = "BackButton" Click = "BackButton_Click" Icon = "Back" Foreground="Black"/>
-                    <TextBlock Text = "PolisHub" FontWeight="Bold" Foreground = "Black" Margin = "16,8" FontSize = "24"/>
+                    <AppBarButton x:Name = "BackButton" Click = "BackButton_Click" Icon = "Back" Foreground = "Black"/>
+                    <TextBlock Text = "PolisHub" FontWeight = "Bold" Foreground = "Black" Margin = "16,8" FontSize = "24"/>
                 </StackPanel>
             </CommandBar.Content>
 
@@ -40,15 +40,23 @@
         <!--#endregion-->
 
         <!--#region Title-->
-        
+
         <StackPanel Grid.Row = "1" Orientation = "Vertical" HorizontalAlignment = "Center" VerticalAlignment = "Center" Margin = "48">
             <TextBlock Text = "WiFi Settings" Margin = "18" FontSize = "24" FontWeight = "SemiBold" HorizontalAlignment = "Center" />
         </StackPanel>
-        
+
         <!--#endregion-->
         
-        <!--#region WiFi Connection StackPanel-->
+        <!--#region WiFi Already Connected-->
+
+        <StackPanel x:Name = "WiFiConnectedStackPanel" Grid.Row = "2" Orientation = "Vertical" HorizontalAlignment = "Center" Visibility = "Collapsed">
+            <TextBlock x:Name = "SSIDConnectedTo"/>
+        </StackPanel>
         
+        <!--#endregion-->
+
+        <!--#region WiFi Connection StackPanel-->
+
         <StackPanel x:Name = "WiFiConnectStackPanel" Grid.Row = "2" Orientation = "Vertical" HorizontalAlignment="Center" Visibility = "Collapsed">
             <TextBlock x:Name = "SSID_TextBox" Text = "" HorizontalAlignment = "Center" Margin = "8"/>
 
@@ -57,23 +65,25 @@
                 <PasswordBox Name = "PasswordBox" PlaceholderText = "Password" Margin = "8" Width = "150"/>
             </StackPanel>
 
-            <Button Content = "Connetti" Margin = "8" HorizontalAlignment = "Center" Width = "200"/>
+            <Button Content = "Connetti" Margin = "8" HorizontalAlignment = "Center" Width = "200" Tapped = "ConnectWiFi_Tapped"/>
+
+            <TextBlock x:Name = "ConnectionResultTextBlock" HorizontalAlignment = "Center" Margin = "8"/>
         </StackPanel>
-        
+
         <!--#endregion-->
-        
+
         <!--#region WiFi List StackPanel-->
-        
+
         <StackPanel x:Name = "WiFiListStackPanel" Grid.Row = "2" Orientation = "Vertical" HorizontalAlignment = "Center" Visibility = "Collapsed">
             <ListView x:Name = "WiFiListListView" 
                   Grid.Row = "2"
                   HorizontalAlignment = "Center"
                   ItemTemplate = "{StaticResource DataTemplateWiFiList}"/>
 
-            <ProgressRing x:Name = "WiFiListProgressRing" Visibility = "Collapsed" Width = "40" Height = "40" Foreground = "Yellow"/>
-            <FontIcon x:Name = "UpdateListIcon" FontFamily="Sageo MDL2 Assets" Glyph="&#777;" Visibility = "Collapsed" Width = "40" Height = "40" Tapped = "UpdateWiFiList_Tapped"/>
+            <ProgressRing x:Name = "WiFiListProgressRing" Visibility = "Collapsed" Width = "40" Height = "40" Foreground = "Yellow" Margin = "12"/>
+            <FontIcon x:Name = "UpdateListIcon" FontFamily = "Segoe MDL2 Assets" Glyph="&#xE777;" Visibility = "Collapsed" Width = "40" Height = "40" Margin = "12" Tapped = "UpdateWiFiList_Tapped"/>
         </StackPanel>
-        
+
         <!--#endregion-->
     </Grid>
 </Page>

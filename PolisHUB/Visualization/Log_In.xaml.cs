@@ -91,5 +91,10 @@ namespace PolisHUB
 				this.Frame.Navigate(typeof(WiFiSettings), obj);
 			}
 		}
+
+		private void ShutDown_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+		{
+			Application.Current.Exit();
+		}
 	}
 }

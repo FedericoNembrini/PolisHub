@@ -22,6 +22,10 @@
                 <AppBarButton Click = "WiFiConnection_Click">
                     <FontIcon x:Name = "WiFiButton" FontFamily = "Segoe MDL2 Assets" Glyph = "&#xE701;"/>
                 </AppBarButton>
+
+                <AppBarButton Tapped = "ShutDown_Tapped">
+                    <FontIcon FontFamily = "Segoe MDL2 Assets" Glyph = "&#xE7E8;" Foreground = "Black"/>
+                </AppBarButton>
             </CommandBar.PrimaryCommands>
         </CommandBar>
 

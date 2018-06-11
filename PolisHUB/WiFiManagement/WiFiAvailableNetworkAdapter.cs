@@ -6,11 +6,13 @@ namespace PolisHUB.WiFiManagement
 {
 	class WiFiAvailableNetworkAdapter
 	{
+		public WiFiAvailableNetwork AvailableNetworkCopy;
 		public string Ssid { get; set; }
 		public string SignalBarsGlyph { get; set; }
 
 		public WiFiAvailableNetworkAdapter(WiFiAvailableNetwork Network)
 		{
+			AvailableNetworkCopy = Network;
 			Ssid = Network.Ssid;
 
 			switch (Network.SignalBars)

@@ -68,9 +68,14 @@
                 <AppBarButton Visibility = "Collapsed">
                     <FontIcon x:Name = "WiFiButton" FontFamily = "Segoe MDL2 Assets" Glyph = "&#xE701;" Foreground = "Black"/>
                 </AppBarButton>
+                
                 <AppBarButton x:Name = "UserAppBar" Icon = "Contact" Foreground = "Black"/>
                 <AppBarButton Icon = "Setting" Foreground = "Black"/>
 
+                <AppBarButton Tapped = "ShutDown_Tapped">
+                    <FontIcon FontFamily = "Segoe MDL2 Assets" Glyph = "&#xE7E8;" Foreground = "Black"/>
+                </AppBarButton>
+                
             </CommandBar.PrimaryCommands>
             
         </CommandBar>
