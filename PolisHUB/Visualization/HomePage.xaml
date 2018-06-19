@@ -70,7 +70,7 @@
                 </AppBarButton>
                 
                 <AppBarButton x:Name = "UserAppBar" Icon = "Contact" Foreground = "Black"/>
-                <AppBarButton Icon = "Setting" Foreground = "Black"/>
+                <AppBarButton Icon = "Setting" Foreground = "Black" Visibility = "Collapsed"/>
 
                 <AppBarButton Tapped = "ShutDown_Tapped">
                     <FontIcon FontFamily = "Segoe MDL2 Assets" Glyph = "&#xE7E8;" Foreground = "Black"/>

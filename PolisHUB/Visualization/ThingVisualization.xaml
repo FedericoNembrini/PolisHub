@@ -14,7 +14,7 @@
 
                     <TextBlock Text = "{Binding TimeStamp}" Margin = "12, 12, 24, 12"/>
                     <TextBlock Text = "{Binding Value}" Margin = "12, 12, 0, 12"/>
-                    <TextBlock Text = "{Binding Unit}" Margin = "0, 12, 12, 12" FontSize = "12" VerticalAlignment = "Bottom"/>
+                    <TextBlock Text = "{Binding Unit}" Margin = "0, 12, 12, 12" FontSize = "14" VerticalAlignment = "Bottom"/>
 
                 </StackPanel>
             </StackPanel>
@@ -41,8 +41,8 @@
 
             <CommandBar.PrimaryCommands>
 
-                <AppBarButton x:Name = "UserAppBar" Icon = "Contact"/>
-                <AppBarButton Icon = "Setting"/>
+                <AppBarButton x:Name = "UserAppBar" Icon = "Contact" Foreground = "Black" Visibility = "Collapsed"/>
+                <AppBarButton Icon = "Setting" Foreground = "Black" Visibility = "Collapsed"/>
 
             </CommandBar.PrimaryCommands>
 

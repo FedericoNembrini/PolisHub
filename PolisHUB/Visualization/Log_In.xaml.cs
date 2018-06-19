@@ -33,8 +33,8 @@ namespace PolisHUB
 
 		private async void LoginRequestAsync()
 		{
-			JObject status = await handler.HTTPLoginRequest_Async("admin", "password");
-			//JObject status = await handler.HTTPLoginRequest_Async(UsernameBox.Text, PasswordBox.Password);
+			//JObject status = await handler.HTTPLoginRequest_Async("admin", "password");
+			JObject status = await handler.HTTPLoginRequest_Async(UsernameBox.Text, PasswordBox.Password);
 
 			if (status == null)
 			{
